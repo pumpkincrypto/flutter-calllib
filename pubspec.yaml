@@ -12,7 +12,10 @@ dependencies:
   flutter:
     sdk: flutter
 
-  rongcloud_im_wrapper_plugin: ^5.6.0
+  rongcloud_im_wrapper_plugin:
+    git:
+      url: git@github.com:pumpkincrypto/im-flutter-wrapper.git
+      ref: 465f5c598495d26f13472979ca69c99f18b192d8
 
 dev_dependencies:
   flutter_test:
