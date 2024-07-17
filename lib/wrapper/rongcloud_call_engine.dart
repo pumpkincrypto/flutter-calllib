@@ -220,6 +220,12 @@ class RCCallEngine extends CallEngine {
         int volume = arguments['volume'];
         onAudioVolume?.call(user, volume);
         break;
+      case 'engine:callMissed':
+        Map<dynamic, dynamic> arguments = call.arguments;
+        String userId = arguments['userId'];
+        String sessionId = arguments['sessionId'];
+        onCallMissed?.call(userId, sessionId);
+        break;
     }
   }
 
