@@ -4,16 +4,17 @@ import 'package:flutter/material.dart';
 import 'package:context_holder/context_holder.dart';
 // import 'package:wakelock/wakelock.dart';
 
-import 'package:flutter_call_plugin_example/frame/utils/local_storage.dart';
-import 'global_config.dart';
-import 'router/router.dart';
+// import 'package:flutter_call_plugin_example/frame/utils/local_storage.dart';
+// import 'global_config.dart';
+// import 'router/router.dart';
 
 void main() {
   // 确保Flutter已初始化。
   WidgetsFlutterBinding.ensureInitialized();
-  
+
   // 初始化本地存储，然后运行应用程序。
-  LocalStorage.init().then((value) => runApp(const RCCallFlutter()));
+  // LocalStorage.init().then((value) => runApp(const RCCallFlutter()));
+  runApp(const RCCallFlutter());
 }
 
 class RCCallFlutter extends StatelessWidget {
@@ -41,15 +42,20 @@ class RCCallFlutter extends StatelessWidget {
       // 使用Context Holder插件的导航键。
       navigatorKey: ContextHolder.key,
       // 设置应用程序的标题。
-      title: GlobalConfig.appTitle,
+      // title: GlobalConfig.appTitle,
       // 设置应用程序的主题数据。
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text("Test"),
+        ),
+      ),
       // 设置应用程序的初始路由。
-      initialRoute: RouterManager.CONNECT,
+      // initialRoute: RouterManager.CONNECT,
       // 初始化路由表。
-      routes: RouterManager.initRouters(),
+      // routes: RouterManager.initRouters(),
       // 注释掉的部分可以用于添加导航观察器。
       // navigatorObservers: [
       //   LeakNavigatorObserver(),

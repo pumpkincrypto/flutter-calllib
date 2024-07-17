@@ -1,0 +1,22 @@
+# This is a generated file; do not edit or check into version control.
+leak_detector=/Users/limf/.pub-cache/hosted/pub.dev/leak_detector-1.0.1+3/
+path_provider_linux=/Users/limf/.pub-cache/hosted/pub.dev/path_provider_linux-2.2.1/
+path_provider_windows=/Users/limf/.pub-cache/hosted/pub.dev/path_provider_windows-2.3.0/
+permission_handler=/Users/limf/.pub-cache/hosted/pub.dev/permission_handler-10.0.0/
+permission_handler_android=/Users/limf/.pub-cache/hosted/pub.dev/permission_handler_android-10.3.6/
+permission_handler_apple=/Users/limf/.pub-cache/hosted/pub.dev/permission_handler_apple-9.1.4/
+permission_handler_windows=/Users/limf/.pub-cache/hosted/pub.dev/permission_handler_windows-0.1.3/
+rongcloud_beauty_wrapper_plugin=/Users/limf/.pub-cache/hosted/pub.dev/rongcloud_beauty_wrapper_plugin-5.4.0/
+rongcloud_call_wrapper_plugin=/Users/limf/Documents/workspace/rongcloud/flutter-calllib/
+rongcloud_im_wrapper_plugin=/Users/limf/.pub-cache/git/im-flutter-wrapper-465f5c598495d26f13472979ca69c99f18b192d8/
+shared_preferences=/Users/limf/.pub-cache/hosted/pub.dev/shared_preferences-2.0.13/
+shared_preferences_android=/Users/limf/.pub-cache/hosted/pub.dev/shared_preferences_android-2.2.3/
+shared_preferences_ios=/Users/limf/.pub-cache/hosted/pub.dev/shared_preferences_ios-2.1.1/
+shared_preferences_linux=/Users/limf/.pub-cache/hosted/pub.dev/shared_preferences_linux-2.3.2/
+shared_preferences_macos=/Users/limf/.pub-cache/hosted/pub.dev/shared_preferences_macos-2.0.5/
+shared_preferences_web=/Users/limf/.pub-cache/hosted/pub.dev/shared_preferences_web-2.3.0/
+shared_preferences_windows=/Users/limf/.pub-cache/hosted/pub.dev/shared_preferences_windows-2.3.2/
+sqflite=/Users/limf/.pub-cache/hosted/pub.dev/sqflite-2.3.3+1/
+wakelock=/Users/limf/.pub-cache/hosted/pub.dev/wakelock-0.6.0+1/
+wakelock_macos=/Users/limf/.pub-cache/hosted/pub.dev/wakelock_macos-0.4.0/
+wakelock_web=/Users/limf/.pub-cache/hosted/pub.dev/wakelock_web-0.4.0/

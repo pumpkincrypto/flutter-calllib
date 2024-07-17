@@ -6,12 +6,12 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_call_plugin_example/config.dart';
-import 'package:flutter_call_plugin_example/router/router.dart';
+// import 'package:flutter_call_plugin_example/router/router.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:rongcloud_call_wrapper_plugin/wrapper/rongcloud_call_engine.dart';
 import 'package:rongcloud_im_wrapper_plugin/rongcloud_im_wrapper_plugin.dart';
 // import 'package:rongcloud_rtc_wrapper_plugin/rongcloud_rtc_wrapper_plugin.dart';
-import 'utils/utils.dart';
+// import 'utils/utils.dart';
 
 class Connect extends StatelessWidget {
   const Connect({Key? key}) : super(key: key);
@@ -75,26 +75,26 @@ class Connect extends StatelessWidget {
     // 调用 connect 方法，连接融云服务器
     // 跳转到 CallPage 页面
 
-    RCIMIWEngineOptions options = RCIMIWEngineOptions.create();
-    Utils.imEngine = await RCIMIWEngine.create(AppConfig.app_key, options);
-    Utils.callEngine = await RCCallEngine.create();
-    // Utils.rtcEngine = await RCRTCEngine.create();
+    // RCIMIWEngineOptions options = RCIMIWEngineOptions.create();
+    // Utils.imEngine = await RCIMIWEngine.create(AppConfig.app_key, options);
+    // Utils.callEngine = await RCCallEngine.create();
+    // // Utils.rtcEngine = await RCRTCEngine.create();
 
-    String token = Platform.isAndroid ? AppConfig.token_a : AppConfig.token_b;
+    // String token = Platform.isAndroid ? AppConfig.token_a : AppConfig.token_b;
 
-    Utils.imEngine?.connect(token, 0, callback: RCIMIWConnectCallback(onConnected: (code, userId) {
-      print('onConnected: $code, $userId');
-      Utils.currentUserId = userId;
-      _toCallingPage(context);
-    }));
+    // Utils.imEngine?.connect(token, 0, callback: RCIMIWConnectCallback(onConnected: (code, userId) {
+    //   print('onConnected: $code, $userId');
+    //   Utils.currentUserId = userId;
+    //   _toCallingPage(context);
+    // }));
   }
 
   void _toCallingPage(BuildContext context) {
     FocusScope.of(context).requestFocus(new FocusNode());
-    Navigator.pushNamed(
-      context,
-      RouterManager.CHATTING1V1,
-    );
+    // Navigator.pushNamed(
+    //   context,
+    //   RouterManager.CHATTING1V1,
+    // );
   }
 
   Future<bool> requestPermission() async {

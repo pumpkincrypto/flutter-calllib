@@ -7,7 +7,7 @@ import 'package:rongcloud_beauty_wrapper_plugin/rongcloud_beauty_wrapper_plugin.
 import 'package:rongcloud_beauty_wrapper_plugin/wrapper/rongcloud_beauty_constants.dart';
 import 'package:rongcloud_beauty_wrapper_plugin/wrapper/rongcloud_beauty_options.dart';
 import 'package:rongcloud_call_wrapper_plugin/rongcloud_call_wrapper_plugin.dart';
-import 'utils/utils.dart';
+// import 'utils/utils.dart';
 // import 'package:audio_routing/audio_routing.dart';
 
 enum AppState {
@@ -72,7 +72,8 @@ class _CallPageState extends State<CallPage> {
     return Center(
         child: Column(
       children: [
-        Text("当前登录 id : ${Utils.currentUserId}"),
+        // Text("当前登录 id : ${Utils.currentUserId}"),
+        Text("当前登录 id :"),
         Divider(
           height: 50,
           color: Colors.transparent,
@@ -459,142 +460,144 @@ class _CallPageState extends State<CallPage> {
   }
 
   Future<void> _initEngine() async {
-    await RCBeautyEngine.setBeautyFilter(RCBeautyFilter.none);
-    await RCBeautyEngine.resetBeauty();
-    await RCBeautyEngine.setBeautyOptions(false);
+    // await RCBeautyEngine.setBeautyFilter(RCBeautyFilter.none);
+    // await RCBeautyEngine.resetBeauty();
+    // await RCBeautyEngine.setBeautyOptions(false);
 
-    RCCallAudioConfig audioConfig = RCCallAudioConfig.create();
-    await Utils.callEngine?.setAudioConfig(audioConfig);
+    // RCCallAudioConfig audioConfig = RCCallAudioConfig.create();
+    // await Utils.callEngine?.setAudioConfig(audioConfig);
 
-    RCCallVideoConfig videoConfig = RCCallVideoConfig.create(profile: RCCallVideoProfile.profile_1080_1920_high);
-    await Utils.callEngine?.setVideoConfig(videoConfig);
-    Utils.callEngine?.enableCamera(false);
+    // RCCallVideoConfig videoConfig = RCCallVideoConfig.create(
+    //     profile: RCCallVideoProfile.profile_1080_1920_high);
+    // await Utils.callEngine?.setVideoConfig(videoConfig);
+    // Utils.callEngine?.enableCamera(false);
 
-    Utils.callEngine?.onReceiveCall = (session) async {
-      if (Platform.isAndroid) {
-        // routing.startAudioRouteing();
-      }
+    // Utils.callEngine?.onReceiveCall = (session) async {
+    //   if (Platform.isAndroid) {
+    //     // routing.startAudioRouteing();
+    //   }
 
-      _background = await RCCallView.create(fit: BoxFit.cover);
-      await Utils.callEngine?.setVideoView(Utils.currentUserId!, _background);
-      setState(() {
-        _session = session;
-        _state = AppState.ringing;
-      });
-    };
+    //   _background = await RCCallView.create(fit: BoxFit.cover);
+    //   await Utils.callEngine?.setVideoView(Utils.currentUserId!, _background);
+    //   setState(() {
+    //     _session = session;
+    //     _state = AppState.ringing;
+    //   });
+    // };
 
-    Utils.callEngine?.onConnect = () async {
-      _background = null;
+    // Utils.callEngine?.onConnect = () async {
+    //   _background = null;
 
-      _bigUserId = _session?.mine.userId;
-      _session?.users.forEach((user) {
-        if (user.userId != _bigUserId) {
-          _smallUserId = user.userId;
-        }
-      });
+    //   _bigUserId = _session?.mine.userId;
+    //   _session?.users.forEach((user) {
+    //     if (user.userId != _bigUserId) {
+    //       _smallUserId = user.userId;
+    //     }
+    //   });
 
-      _mine = true;
-      _camera = true;
-      _microphone = true;
-      _speaker = false;
+    //   _mine = true;
+    //   _camera = true;
+    //   _microphone = true;
+    //   _speaker = false;
 
-      Utils.callEngine?.enableSpeaker(_speaker);
+    //   Utils.callEngine?.enableSpeaker(_speaker);
 
-      _big = await RCCallView.create(fit: BoxFit.cover);
-      _small = await RCCallView.create(fit: BoxFit.cover);
+    //   _big = await RCCallView.create(fit: BoxFit.cover);
+    //   _small = await RCCallView.create(fit: BoxFit.cover);
 
-      _state = AppState.chatting;
+    //   _state = AppState.chatting;
 
-      if (mounted) {
-        setState(() {});
-      }
+    //   if (mounted) {
+    //     setState(() {});
+    //   }
 
-      await Utils.callEngine?.setVideoView(_bigUserId!, _big);
-      await Utils.callEngine?.setVideoView(_smallUserId!, _small);
-    };
+    //   await Utils.callEngine?.setVideoView(_bigUserId!, _big);
+    //   await Utils.callEngine?.setVideoView(_smallUserId!, _small);
+    // };
 
-    Utils.callEngine?.onRemoteUserDidChangeCameraState = (user, enable) async {
-      if (enable) {
-        if (_mine) {
-          if (_small == null) {
-            _small = await RCCallView.create(fit: BoxFit.cover);
-            await Utils.callEngine?.setVideoView(_smallUserId!, _small);
-          }
-        } else {
-          if (_big == null) {
-            _big = await RCCallView.create(fit: BoxFit.cover);
-            await Utils.callEngine?.setVideoView(_bigUserId!, _big);
-          }
-        }
-      } else {
-        if (_mine) {
-          if (_small != null) {
-            _small = null;
-            await Utils.callEngine?.setVideoView(_smallUserId!, null);
-          }
-        } else {
-          if (_big != null) {
-            _big = null;
-            await Utils.callEngine?.setVideoView(_bigUserId!, null);
-          }
-        }
-      }
+    // Utils.callEngine?.onRemoteUserDidChangeCameraState = (user, enable) async {
+    //   if (enable) {
+    //     if (_mine) {
+    //       if (_small == null) {
+    //         _small = await RCCallView.create(fit: BoxFit.cover);
+    //         await Utils.callEngine?.setVideoView(_smallUserId!, _small);
+    //       }
+    //     } else {
+    //       if (_big == null) {
+    //         _big = await RCCallView.create(fit: BoxFit.cover);
+    //         await Utils.callEngine?.setVideoView(_bigUserId!, _big);
+    //       }
+    //     }
+    //   } else {
+    //     if (_mine) {
+    //       if (_small != null) {
+    //         _small = null;
+    //         await Utils.callEngine?.setVideoView(_smallUserId!, null);
+    //       }
+    //     } else {
+    //       if (_big != null) {
+    //         _big = null;
+    //         await Utils.callEngine?.setVideoView(_bigUserId!, null);
+    //       }
+    //     }
+    //   }
 
-      if (mounted) {
-        setState(() {});
-      }
-    };
+    //   if (mounted) {
+    //     setState(() {});
+    //   }
+    // };
 
-    Utils.callEngine?.onDisconnect = (reason) async {
-      if (Platform.isAndroid) {
-        // routing.stopAudioRouteing();
-      }
+    // Utils.callEngine?.onDisconnect = (reason) async {
+    //   if (Platform.isAndroid) {
+    //     // routing.stopAudioRouteing();
+    //   }
 
-      'Disconnect, reason = $reason'.toast();
-      _state = AppState.connected;
-      _background = null;
-      _big = null;
-      _small = null;
+    //   'Disconnect, reason = $reason'.toast();
+    //   _state = AppState.connected;
+    //   _background = null;
+    //   _big = null;
+    //   _small = null;
 
-      _beauty = false;
+    //   _beauty = false;
 
-      if (mounted) {
-        setState(() {});
-      }
-    };
+    //   if (mounted) {
+    //     setState(() {});
+    //   }
+    // };
 
-    Utils.callEngine?.onCallError = (error) {
-      'Call Error, error = $error'.toast();
-    };
+    // Utils.callEngine?.onCallError = (error) {
+    //   'Call Error, error = $error'.toast();
+    // };
   }
 
   void _call() async {
-    String target;
+    // String target;
 
-    if (!AppConfig.isDebug) {
-      if (Platform.isAndroid) {
-        target = AppConfig.user_b;
-      } else {
-        target = AppConfig.user_a;
-      }
-    } else {
-      target = _controller.text;
-    }
+    // if (!AppConfig.isDebug) {
+    //   if (Platform.isAndroid) {
+    //     target = AppConfig.user_b;
+    //   } else {
+    //     target = AppConfig.user_a;
+    //   }
+    // } else {
+    //   target = _controller.text;
+    // }
 
-    Utils.callEngine?.enableCamera(false);
-    _session = await Utils.callEngine?.startCall(target, RCCallMediaType.audio_video);
-    if (Platform.isAndroid) {
-      // routing.startAudioRouteing();
-    }
+    // Utils.callEngine?.enableCamera(false);
+    // _session =
+    //     await Utils.callEngine?.startCall(target, RCCallMediaType.audio_video);
+    // if (Platform.isAndroid) {
+    //   // routing.startAudioRouteing();
+    // }
 
-    if (_session != null) {
-      _state = AppState.calling;
-      _background = await RCCallView.create(fit: BoxFit.cover);
-      if (mounted) {
-        setState(() {});
-      }
-      await Utils.callEngine?.setVideoView(_session!.mine.userId, _background);
-    }
+    // if (_session != null) {
+    //   _state = AppState.calling;
+    //   _background = await RCCallView.create(fit: BoxFit.cover);
+    //   if (mounted) {
+    //     setState(() {});
+    //   }
+    //   await Utils.callEngine?.setVideoView(_session!.mine.userId, _background);
+    // }
   }
 
   String _target() {
@@ -610,31 +613,31 @@ class _CallPageState extends State<CallPage> {
   }
 
   void _accept() async {
-    int code = await Utils.callEngine?.accept() ?? -1;
-    if (code != 0) {
-      'Accept Call Error $code'.toast();
-    }
+    // int code = await Utils.callEngine?.accept() ?? -1;
+    // if (code != 0) {
+    //   'Accept Call Error $code'.toast();
+    // }
   }
 
   void _hangup() async {
-    int code = await Utils.callEngine?.hangup() ?? -1;
-    if (code != 0) {
-      'Hangup Call Error $code'.toast();
-    }
-    _state = AppState.connected;
-    if (mounted) {
-      setState(() {});
-    }
+    // int code = await Utils.callEngine?.hangup() ?? -1;
+    // if (code != 0) {
+    //   'Hangup Call Error $code'.toast();
+    // }
+    // _state = AppState.connected;
+    // if (mounted) {
+    //   setState(() {});
+    // }
   }
 
   _openPreview() {
-    _preview = !_preview;
-    Utils.callEngine?.enableCamera(_preview);
-    // 根据_preview判断是否开启摄像头
-    Toast.toast(_preview ? '开启摄像头' : '关闭摄像头');
-    if (mounted) {
-      setState(() {});
-    }
+    // _preview = !_preview;
+    // Utils.callEngine?.enableCamera(_preview);
+    // // 根据_preview判断是否开启摄像头
+    // Toast.toast(_preview ? '开启摄像头' : '关闭摄像头');
+    // if (mounted) {
+    //   setState(() {});
+    // }
   }
 
   void _beautySwitch() async {
@@ -658,41 +661,41 @@ class _CallPageState extends State<CallPage> {
   }
 
   void _cameraSwitch() async {
-    _camera = !_camera;
-    await Utils.callEngine?.enableCamera(_camera);
-    if (_camera) {
-      if (_mine) {
-        _big = await RCCallView.create(fit: BoxFit.cover);
-        await Utils.callEngine?.setVideoView(_bigUserId!, _big);
-      } else {
-        _small = await RCCallView.create(fit: BoxFit.cover);
-        await Utils.callEngine?.setVideoView(_smallUserId!, _small);
-      }
-    } else {
-      if (_mine) {
-        _big = null;
-        await Utils.callEngine?.setVideoView(_bigUserId!, null);
-      } else {
-        _small = null;
-        await Utils.callEngine?.setVideoView(_smallUserId!, null);
-      }
-    }
-    setState(() {});
+    // _camera = !_camera;
+    // await Utils.callEngine?.enableCamera(_camera);
+    // if (_camera) {
+    //   if (_mine) {
+    //     _big = await RCCallView.create(fit: BoxFit.cover);
+    //     await Utils.callEngine?.setVideoView(_bigUserId!, _big);
+    //   } else {
+    //     _small = await RCCallView.create(fit: BoxFit.cover);
+    //     await Utils.callEngine?.setVideoView(_smallUserId!, _small);
+    //   }
+    // } else {
+    //   if (_mine) {
+    //     _big = null;
+    //     await Utils.callEngine?.setVideoView(_bigUserId!, null);
+    //   } else {
+    //     _small = null;
+    //     await Utils.callEngine?.setVideoView(_smallUserId!, null);
+    //   }
+    // }
+    // setState(() {});
   }
 
   void _switchCamera() async {
-    await Utils.callEngine?.switchCamera();
+    // await Utils.callEngine?.switchCamera();
   }
 
   void _microphoneSwitch() async {
     _microphone = !_microphone;
-    await Utils.callEngine?.enableMicrophone(_microphone);
+    // await Utils.callEngine?.enableMicrophone(_microphone);
     setState(() {});
   }
 
   void _speakerSwitch() async {
     _speaker = !_speaker;
-    await Utils.callEngine?.enableSpeaker(_speaker);
+    // await Utils.callEngine?.enableSpeaker(_speaker);
     setState(() {});
   }
 
@@ -703,10 +706,10 @@ class _CallPageState extends State<CallPage> {
     _small = null;
 
     if (_bigUserId != null) {
-      await Utils.callEngine?.setVideoView(_bigUserId!, null);
+      // await Utils.callEngine?.setVideoView(_bigUserId!, null);
     }
     if (_smallUserId != null) {
-      await Utils.callEngine?.setVideoView(_smallUserId!, null);
+      // await Utils.callEngine?.setVideoView(_smallUserId!, null);
     }
 
     String? temp = _bigUserId;
@@ -715,11 +718,11 @@ class _CallPageState extends State<CallPage> {
 
     if (_bigUserId != null) {
       _big = await RCCallView.create(fit: BoxFit.cover);
-      await Utils.callEngine?.setVideoView(_bigUserId!, _big);
+      // await Utils.callEngine?.setVideoView(_bigUserId!, _big);
     }
     if (_smallUserId != null) {
       _small = await RCCallView.create(fit: BoxFit.cover);
-      await Utils.callEngine?.setVideoView(_smallUserId!, _small);
+      // await Utils.callEngine?.setVideoView(_smallUserId!, _small);
     }
 
     if (mounted) {
@@ -728,7 +731,7 @@ class _CallPageState extends State<CallPage> {
   }
 
   _disconnect() {
-    Utils.imEngine?.disconnect(false);
+    // Utils.imEngine?.disconnect(false);
     // 返回上一个页面
     Navigator.pop(context);
   }
