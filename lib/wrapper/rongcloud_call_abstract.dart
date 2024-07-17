@@ -21,6 +21,9 @@ typedef OnRemoteUserDidChangeCameraState = Function(RCCallUserProfile user, bool
 typedef OnNetworkQuality = Function(RCCallUserProfile user, RCCallNetworkQuality quality);
 typedef OnAudioVolume = Function(RCCallUserProfile user, int volume);
 typedef OnCallMissed = Function(String userId, String sessionId);
+typedef OnRemoteUserDidJoin = Function(RCCallUserProfile userProfile);
+typedef OnRemoteUserDidLeave = Function(String userId, int reason);
+typedef OnRemoteUserDidInvite = Function(String userId, RCCallMediaType mediaType);
 
 abstract class CallEngine {
   OnReceiveCall? onReceiveCall;
@@ -44,4 +47,7 @@ abstract class CallEngine {
   OnNetworkQuality? onNetworkQuality;
   OnAudioVolume? onAudioVolume;
   OnCallMissed? onCallMissed;
+  OnRemoteUserDidJoin? onRemoteUserDidJoin;
+  OnRemoteUserDidLeave? onRemoteUserDidLeave;
+  OnRemoteUserDidInvite? onRemoteUserDidInvite;
 }

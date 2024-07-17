@@ -20,8 +20,12 @@ class RCCallSession {
         startTime = json['startTime'],
         connectedTime = json['connectedTime'],
         endTime = json['endTime'],
-        caller = json['caller'] != null ? RCCallUserProfile.fromJson(json['caller']) : null,
-        inviter = json['inviter'] != null ? RCCallUserProfile.fromJson(json['inviter']) : null,
+        caller = json['caller'] != null
+            ? RCCallUserProfile.fromJson(json['caller'])
+            : null,
+        inviter = json['inviter'] != null
+            ? RCCallUserProfile.fromJson(json['inviter'])
+            : null,
         mine = RCCallUserProfile.fromJson(json['mine']),
         extra = json['extra'],
         users = [] {
@@ -45,8 +49,12 @@ class RCCallSession {
     startTime = json['startTime'];
     connectedTime = json['connectedTime'];
     endTime = json['endTime'];
-    caller = json['caller'] != null ? RCCallUserProfile.fromJson(json['caller']) : null;
-    inviter = json['inviter'] != null ? RCCallUserProfile.fromJson(json['inviter']) : null;
+    caller = json['caller'] != null
+        ? RCCallUserProfile.fromJson(json['caller'])
+        : null;
+    inviter = json['inviter'] != null
+        ? RCCallUserProfile.fromJson(json['inviter'])
+        : null;
     mine = RCCallUserProfile.fromJson(json['mine']);
     extra = json['extra'];
     users.clear();
@@ -104,7 +112,8 @@ class RCCallSession {
 }
 
 class RCCallEngine extends CallEngine {
-  RCCallEngine._() : _channel = const MethodChannel('cn.rongcloud.call.flutter/engine') {
+  RCCallEngine._()
+      : _channel = const MethodChannel('cn.rongcloud.call.flutter/engine') {
     _channel.setMethodCallHandler(_handler);
   }
 
@@ -191,7 +200,8 @@ class RCCallEngine extends CallEngine {
         await getCurrentCallSession();
         Map<dynamic, dynamic> arguments = call.arguments;
         var user = RCCallUserProfile.fromJson(arguments['user']);
-        RCCallMediaType mediaType = RCCallMediaType.values[arguments['mediaType']];
+        RCCallMediaType mediaType =
+            RCCallMediaType.values[arguments['mediaType']];
         onRemoteUserDidChangeMediaType?.call(user, mediaType);
         break;
       case 'engine:remoteUserDidChangeMicrophoneState':
@@ -226,6 +236,27 @@ class RCCallEngine extends CallEngine {
         String sessionId = arguments['sessionId'];
         onCallMissed?.call(userId, sessionId);
         break;
+      case 'engine:remoteUserDidJoin':
+        await getCurrentCallSession();
+        Map<dynamic, dynamic> arguments = call.arguments;
+        var userProfile = RCCallUserProfile.fromJson(arguments);
+        onRemoteUserDidJoin?.call(userProfile);
+        break;
+      case 'engine:remoteUserDidLeave':
+        await getCurrentCallSession();
+        Map<dynamic, dynamic> arguments = call.arguments;
+        int reason = arguments['reason'];
+        String userId = arguments['userId'] ?? arguments['id'];
+        onRemoteUserDidLeave?.call(userId, reason);
+        break;
+      case 'engine:remoteUserDidInvite':
+        await getCurrentCallSession();
+        Map<dynamic, dynamic> arguments = call.arguments;
+        String userId = arguments['userId'];
+        RCCallMediaType mediaType =
+            RCCallMediaType.values[arguments['mediaType']];
+        onRemoteUserDidInvite?.call(userId, mediaType);
+        break;
     }
   }
 
@@ -234,8 +265,13 @@ class RCCallEngine extends CallEngine {
   /// [config]          呼叫推送配置
   /// [hangupConfig]    挂断推送配置
   /// [enableApple] 设置是否使用苹果 PushKit 推送， true 使用, false 不使用
-  Future<int> setPushConfig(RCCallPushConfig config, RCCallPushConfig hangupConfig, [bool? enableApple]) async {
-    Map<String, dynamic> arguments = {'push': config.toJson(), 'hangupPush': hangupConfig.toJson()};
+  Future<int> setPushConfig(
+      RCCallPushConfig config, RCCallPushConfig hangupConfig,
+      [bool? enableApple]) async {
+    Map<String, dynamic> arguments = {
+      'push': config.toJson(),
+      'hangupPush': hangupConfig.toJson()
+    };
     if (enableApple != null) {
       arguments['useApple'] = enableApple;
     }
@@ -243,7 +279,8 @@ class RCCallEngine extends CallEngine {
     return code;
   }
 
-  Future<RCCallSession?> startCall(String targetId, RCCallMediaType mediaType, [String? extra]) async {
+  Future<RCCallSession?> startCall(String targetId, RCCallMediaType mediaType,
+      [String? extra]) async {
     Map<String, dynamic> arguments = {
       'targetId': targetId,
       'mediaType': mediaType.index,
@@ -371,7 +408,8 @@ class RCCallEngine extends CallEngine {
   /// return 当前摄像头
   Future<RCCallCamera> currentCamera() async {
     int code = await _channel.invokeMethod('currentCamera');
-    if (code < 0 || code >= RCCallCamera.values.length) return RCCallCamera.none;
+    if (code < 0 || code >= RCCallCamera.values.length)
+      return RCCallCamera.none;
     return RCCallCamera.values[code];
   }
 
@@ -387,7 +425,10 @@ class RCCallEngine extends CallEngine {
   /// [userId] 用户 id
   /// [view] 视频预览视图
   Future<int> setVideoView(String userId, RCCallView? view) async {
-    Map<String, dynamic> arguments = {'userId': userId, 'view': view?._id ?? -1};
+    Map<String, dynamic> arguments = {
+      'userId': userId,
+      'view': view?._id ?? -1
+    };
     int code = await _channel.invokeMethod('setVideoView', arguments) ?? -1;
     return code;
   }
