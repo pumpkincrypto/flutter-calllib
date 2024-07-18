@@ -260,7 +260,7 @@ NSInteger fromCallIWCallType(RCCallIWCallType type) {
     RCCallAssert(arguments, @"RCCallIWEngineConfig");
     
     RCCallIWEngineConfig *config = [[RCCallIWEngineConfig alloc] init];
-    config.enableCallSummary = [arguments rccall_getBool:@"enableCallSummary" defaultValue:NO];
+    config.enableCallSummary = [arguments rccall_getBool:@"enableCallSummary" defaultValue:YES];
     return config;
 }
 
