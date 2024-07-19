@@ -260,6 +260,16 @@ class RCCallEngine extends CallEngine {
     }
   }
 
+  Future<int> setEngineConfig() async {
+    Map<String, dynamic> arguments = {
+      'enableCallSummary': true,
+      'enableAutoReconnect': true,
+      'statusReportInterval': 0,
+    };
+    int code = await _channel.invokeMethod('setEngineConfig', arguments) ?? -1;
+    return code;
+  }
+
   /// 配置推送
   ///
   /// [config]          呼叫推送配置
