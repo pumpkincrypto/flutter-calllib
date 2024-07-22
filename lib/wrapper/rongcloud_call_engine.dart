@@ -69,6 +69,24 @@ class RCCallSession {
     }
   }
 
+  Map<dynamic, dynamic> toJson() {
+    return {
+      'callType': callType.index,
+      'mediaType': mediaType.index,
+      'callId': callId,
+      'targetId': targetId,
+      'sessionId': sessionId,
+      'startTime': startTime,
+      'connectedTime': connectedTime,
+      'endTime': endTime,
+      'caller': caller?.toJson(),
+      'inviter': inviter?.toJson(),
+      'mine': mine.toJson(),
+      'extra': extra,
+      'users': users.map((e) => e.toJson()).toList(),
+    };
+  }
+
   /// 通话类型
   RCCallCallType callType;
 

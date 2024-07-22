@@ -390,8 +390,8 @@ public final class RCCallEngineWrapper implements MethodChannel.MethodCallHandle
         public void onCallMissed(RCCallIWCallSession session) {
             final HashMap<String, Object> arguments = new HashMap<>();
             arguments.put("session", ArgumentAdapter.fromRCCallIWCallSession(session));
-            // 这里少一个参数，融云在下个版本修复，这里先固定传 5、己方未接听
-            arguments.put("reason", 5);
+            // 这里少一个参数，融云在下个版本修复，这里先固定传 4、己方未接听
+            arguments.put("reason", 4);
             MainThreadPoster.post(() -> channel.invokeMethod("engine:callMissed", arguments));
         }
 

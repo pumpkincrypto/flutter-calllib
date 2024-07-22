@@ -212,34 +212,36 @@ class RCCallAudioConfig {
 }
 
 class RCCallVideoConfig {
-  RCCallVideoConfig.create({
-    this.profile = RCCallVideoProfile.profile_480_640_high,
-    this.defaultCamera = RCCallCamera.front,
-    this.cameraOrientation = RCCallCameraOrientation.portrait,
-    this.enableHardwareDecoder = true,
-    this.hardwareDecoderColor = -1,
-    this.enableHardwareEncoder = true,
-    this.enableHardwareEncoderHighProfile = true,
-    this.enableEncoderTexture = true,
-    this.hardWareEncoderColor = -1,
-    this.hardWareEncoderFrameRate = 30,
-    this.hardwareEncoderBitrateMode = RCCallVideoBitrateMode.cbr,
-    this.previewMirror = true
-  });
+  RCCallVideoConfig.create(
+      {this.profile = RCCallVideoProfile.profile_480_640_high,
+      this.defaultCamera = RCCallCamera.front,
+      this.cameraOrientation = RCCallCameraOrientation.portrait,
+      this.enableHardwareDecoder = true,
+      this.hardwareDecoderColor = -1,
+      this.enableHardwareEncoder = true,
+      this.enableHardwareEncoderHighProfile = true,
+      this.enableEncoderTexture = true,
+      this.hardWareEncoderColor = -1,
+      this.hardWareEncoderFrameRate = 30,
+      this.hardwareEncoderBitrateMode = RCCallVideoBitrateMode.cbr,
+      this.previewMirror = true});
 
   RCCallVideoConfig.fromJson(Map<dynamic, dynamic> json)
       : enableHardwareDecoder = json['enableHardwareDecoder'],
         hardwareDecoderColor = json['hardwareDecoderColor'],
         enableHardwareEncoder = json['enableHardwareEncoder'],
-        enableHardwareEncoderHighProfile = json['enableHardwareEncoderHighProfile'],
+        enableHardwareEncoderHighProfile =
+            json['enableHardwareEncoderHighProfile'],
         enableEncoderTexture = json['enableEncoderTexture'],
         hardWareEncoderColor = json['hardWareEncoderColor'],
         hardWareEncoderFrameRate = json['hardWareEncoderFrameRate'],
-        hardwareEncoderBitrateMode = RCCallVideoBitrateMode.values[json['hardwareEncoderBitrateMode']],
+        hardwareEncoderBitrateMode =
+            RCCallVideoBitrateMode.values[json['hardwareEncoderBitrateMode']],
         previewMirror = json['previewMirror'],
         profile = RCCallVideoProfile.values[json['profile']],
         defaultCamera = RCCallCamera.values[json['defaultCamera']],
-        cameraOrientation = RCCallCameraOrientation.values[json['cameraOrientation']];
+        cameraOrientation =
+            RCCallCameraOrientation.values[json['cameraOrientation']];
 
   Map<String, dynamic> toJson() {
     Map<String, dynamic> json = {
@@ -251,7 +253,7 @@ class RCCallVideoConfig {
       'enableHardwareEncoder': enableHardwareEncoder,
       'enableHardwareEncoderHighProfile': enableHardwareEncoderHighProfile,
       'enableEncoderTexture': enableEncoderTexture,
-      'previewMirror' : previewMirror,
+      'previewMirror': previewMirror,
       'hardWareEncoderColor': hardWareEncoderColor,
       'hardWareEncoderFrameRate': hardWareEncoderFrameRate,
       'hardwareEncoderBitrateMode': hardwareEncoderBitrateMode.index,
@@ -339,6 +341,17 @@ class RCCallUserProfile {
         mediaId = json['mediaId'],
         enableCamera = json['enableCamera'],
         enableMicrophone = json['enableMicrophone'];
+
+  Map<dynamic, dynamic> toJson() {
+    return {
+      'userType': userType.index,
+      'mediaType': mediaType.index,
+      'userId': userId,
+      'mediaId': mediaId,
+      'enableCamera': enableCamera,
+      'enableMicrophone': enableMicrophone,
+    };
+  }
 
   /// 用户身份类型
   RCCallUserType userType;
