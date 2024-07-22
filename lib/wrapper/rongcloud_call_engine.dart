@@ -232,9 +232,9 @@ class RCCallEngine extends CallEngine {
         break;
       case 'engine:callMissed':
         Map<dynamic, dynamic> arguments = call.arguments;
-        String userId = arguments['userId'];
-        String sessionId = arguments['sessionId'];
-        onCallMissed?.call(userId, sessionId);
+        final session = RCCallSession.fromJson(arguments['session']);
+        int reason = arguments['reason'];
+        onCallMissed?.call(session, RCCallDisconnectReason.values[reason]);
         break;
       case 'engine:remoteUserDidJoin':
         await getCurrentCallSession();

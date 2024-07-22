@@ -11,19 +11,25 @@ typedef OnSwitchCamera = Function(RCCallCamera camera);
 typedef OnCallError = Function(int errorCode);
 typedef OnCallDidMake = Function();
 typedef OnRemoteUserDidRing = Function(String userId);
-typedef OnRemoteUserDidChangeMediaType = Function(RCCallUserProfile user, RCCallMediaType mediaType);
-typedef OnRemoteUserDidChangeMicrophoneState = Function(RCCallUserProfile user, bool enable);
-typedef OnRemoteUserDidChangeCameraState = Function(RCCallUserProfile user, bool enable);
+typedef OnRemoteUserDidChangeMediaType = Function(
+    RCCallUserProfile user, RCCallMediaType mediaType);
+typedef OnRemoteUserDidChangeMicrophoneState = Function(
+    RCCallUserProfile user, bool enable);
+typedef OnRemoteUserDidChangeCameraState = Function(
+    RCCallUserProfile user, bool enable);
 // typedef OnRemoteUserJoin = Function(RCCallUserProfile userProfile);
 // typedef OnRemoteUserLeave = Function(String userId, int reason);
 // typedef OnRemoteUserDidInvite = Function(String userId, RCCallMediaType mediaType);
 
-typedef OnNetworkQuality = Function(RCCallUserProfile user, RCCallNetworkQuality quality);
+typedef OnNetworkQuality = Function(
+    RCCallUserProfile user, RCCallNetworkQuality quality);
 typedef OnAudioVolume = Function(RCCallUserProfile user, int volume);
-typedef OnCallMissed = Function(String userId, String sessionId);
+typedef OnCallMissed = Function(
+    RCCallSession session, RCCallDisconnectReason reason);
 typedef OnRemoteUserDidJoin = Function(RCCallUserProfile userProfile);
 typedef OnRemoteUserDidLeave = Function(String userId, int reason);
-typedef OnRemoteUserDidInvite = Function(String userId, RCCallMediaType mediaType);
+typedef OnRemoteUserDidInvite = Function(
+    String userId, RCCallMediaType mediaType);
 
 abstract class CallEngine {
   OnReceiveCall? onReceiveCall;
