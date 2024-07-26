@@ -5,9 +5,11 @@ class RCCallView extends StatefulWidget {
     BoxFit fit = BoxFit.contain,
     bool mirror = false,
     Function()? onFirstFrameRendered,
+    FilterQuality filterQuality = FilterQuality.low,
   }) async {
     int id = await _channel.invokeMethod('create');
-    RCCallView view = RCCallView._(id, fit, mirror, onFirstFrameRendered);
+    RCCallView view =
+        RCCallView._(id, fit, mirror, onFirstFrameRendered, filterQuality);
     return view;
   }
 
@@ -16,8 +18,11 @@ class RCCallView extends StatefulWidget {
     BoxFit fit,
     bool mirror,
     this._onFirstFrameRendered,
+    this.filterQuality,
   )   : _state = _RCCallViewState(fit, mirror),
-        super(key: Key('RCCallView[$_id][${DateTime.now().microsecondsSinceEpoch}]')) {
+        super(
+            key: Key(
+                'RCCallView[$_id][${DateTime.now().microsecondsSinceEpoch}]')) {
     _state.init(this);
   }
 
@@ -40,10 +45,12 @@ class RCCallView extends StatefulWidget {
   @override
   State<StatefulWidget> createState() => _state;
 
-  static final MethodChannel _channel = MethodChannel('cn.rongcloud.call.flutter/view');
+  static final MethodChannel _channel =
+      MethodChannel('cn.rongcloud.call.flutter/view');
   final int _id;
   final _RCCallViewState _state;
   final Function()? _onFirstFrameRendered;
+  final FilterQuality filterQuality;
 }
 
 class _RCCallViewState extends State<RCCallView> {
@@ -51,13 +58,16 @@ class _RCCallViewState extends State<RCCallView> {
 
   void init(RCCallView view) {
     this.view = view;
-    subscription = EventChannel('cn.rongcloud.call.flutter/view:${view._id}').receiveBroadcastStream().listen(onData);
+    subscription = EventChannel('cn.rongcloud.call.flutter/view:${view._id}')
+        .receiveBroadcastStream()
+        .listen(onData);
   }
 
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
-      builder: (BuildContext context, BoxConstraints constraints) => _build(constraints),
+      builder: (BuildContext context, BoxConstraints constraints) =>
+          _build(constraints),
     );
   }
 
@@ -74,7 +84,8 @@ class _RCCallViewState extends State<RCCallView> {
           child: Transform(
             transform: Matrix4.rotationY(_mirror ? -pi : 0.0),
             alignment: FractionalOffset.center,
-            child: Texture(textureId: view._id),
+            child: Texture(
+                textureId: view._id, filterQuality: widget.filterQuality),
           ),
         ),
       ),
