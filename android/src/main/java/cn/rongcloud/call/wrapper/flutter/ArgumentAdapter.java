@@ -15,6 +15,7 @@ import cn.rongcloud.call.wrapper.config.RCCallIWIOSPushConfig;
 import cn.rongcloud.call.wrapper.config.RCCallIWImportanceHW;
 import cn.rongcloud.call.wrapper.config.RCCallIWMediaType;
 import cn.rongcloud.call.wrapper.config.RCCallIWPushConfig;
+import cn.rongcloud.call.wrapper.config.RCCallIWUserType;
 import cn.rongcloud.call.wrapper.config.RCCallIWVideoBitrateMode;
 import cn.rongcloud.call.wrapper.config.RCCallIWVideoConfig;
 import cn.rongcloud.call.wrapper.config.RCCallIWVideoProfile;
