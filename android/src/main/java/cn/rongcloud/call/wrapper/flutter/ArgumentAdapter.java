@@ -29,9 +29,9 @@ final class ArgumentAdapter {
         if (rcCallIWUserProfile == null) {
             return arguments;
         }
-        arguments.put("userType", rcCallIWUserProfile.getUserType().ordinal());
+        arguments.put("userType", rcCallIWUserProfile.getUserType() != null ? rcCallIWUserProfile.getUserType().ordinal(): RCCallIWUserType.NORMAL.ordinal());
         arguments.put("userId", rcCallIWUserProfile.getUserId());
-        arguments.put("mediaType", rcCallIWUserProfile.getMediaType().ordinal());
+        arguments.put("mediaType", rcCallIWUserProfile.getMediaType() != null ? rcCallIWUserProfile.getMediaType().ordinal(): RCCallIWMediaType.AUDIO.ordinal());
         arguments.put("mediaId", rcCallIWUserProfile.getMediaId());
         arguments.put("enableCamera", rcCallIWUserProfile.isEnableCamera());
         arguments.put("enableMicrophone", rcCallIWUserProfile.isEnableMicrophone());
