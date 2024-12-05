@@ -15,7 +15,7 @@ dependencies:
   rongcloud_im_wrapper_plugin:
     git:
       url: git@github.com:pumpkincrypto/im-flutter-wrapper.git
-      ref: 465f5c598495d26f13472979ca69c99f18b192d8
+      ref: 0a08d3d7ca17aed9bf0154d8b244ca6227e2e1bc
 
 dev_dependencies:
   flutter_test:
